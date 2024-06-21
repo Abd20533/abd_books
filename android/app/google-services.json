@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "413342340050",
+    "project_id": "myproject1-938b5",
+    "storage_bucket": "myproject1-938b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413342340050:android:5d5d260fa5529d11ddee0b",
+        "android_client_info": {
+          "package_name": "com.example.culturalspacelibrary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq3_wCGWdcbn1Qse68Fv_LAnSaS73R76I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
