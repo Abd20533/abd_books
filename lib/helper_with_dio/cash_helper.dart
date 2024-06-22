@@ -7,7 +7,7 @@ class CashHelper {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  static Future<bool> putString({required key, required value})async{
+  static Future<bool> putString({required key, required value}) async {
     return await sharedPreferences.setString(key, value);
   }
 
@@ -15,36 +15,49 @@ class CashHelper {
     return sharedPreferences.getString(key);
   }
 
-  static Future<bool> putUser({required String userToken})async{
+  static Future<bool> putUser({required String userToken}) async {
     bool putUserToken = await sharedPreferences.setString('token', userToken);
     return putUserToken;
   }
-  static Future<bool> putUserEmail({required String email}) async{
+
+  static Future<bool> putUserEmail({required String email}) async {
     return await sharedPreferences.setString('email', email);
   }
 
-  static Future<bool> putUserPhone({required String mobile}) async{
+  static Future<bool> putUserPhone({required String mobile}) async {
     return await sharedPreferences.setString('mobile', mobile);
   }
 
-  static String? getUserToken(){
+  static Future<bool> putUserTheme({required String theme}) async {
+    return await sharedPreferences.setString('theme', theme);
+  }
+
+  static String? getUserToken() {
     return sharedPreferences.getString('token');
+  }
+
+  static String? getUserTheme() {
+    return sharedPreferences.getString('theme');
   }
 
   static String? getUserPhone() {
     return sharedPreferences.getString('mobile');
   }
-  static bool isAdmin(){
+
+  static bool isAdmin() {
     //print('in isAdmin function: ${getUserPhone()}');
     return getUserPhone() == '0991996920';
   }
-  static Future<bool> putUserId({required int id}) async{
+
+  static Future<bool> putUserId({required int id}) async {
     return await sharedPreferences.setInt('id', id);
   }
-  static int? getUserId(){
+
+  static int? getUserId() {
     return sharedPreferences.getInt('id');
   }
-  static logoutUser(){
+
+  static logoutUser() {
     sharedPreferences.clear();
   }
 }

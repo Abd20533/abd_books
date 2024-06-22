@@ -1,3 +1,4 @@
+import 'package:culturalspacelibrary/cubit/cubit10/my_theme_cubit.dart';
 import 'package:culturalspacelibrary/import_package.dart';
 
 import 'package:get/get.dart';
@@ -98,9 +99,15 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           transitionDuration: Duration(seconds: 2),
           theme: state.themeData,
-          darkTheme: ThemeData(backgroundColor: Colors.black),
-          themeMode: state.themeData == ThemeData.light
-              ? ThemeMode.dark
+          darkTheme: ThemeData(
+            backgroundColor: Colors.black,
+          ),
+          themeMode: CashHelper.getUserTheme() != null
+              ? (CashHelper.getUserTheme() == "light"
+                  ? ThemeMode.light
+                  : (CashHelper.getUserTheme() == "dark"
+                      ? ThemeMode.light
+                      : ThemeMode.dark))
               : ThemeMode.light,
           home: CashHelper.getUserToken() != ""
               ? const SplashViewBody2()

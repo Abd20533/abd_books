@@ -1,5 +1,8 @@
 import 'package:culturalspacelibrary/constant/constant.dart';
+import 'package:culturalspacelibrary/constant/widgetes/widgetes.dart';
 import 'package:culturalspacelibrary/core/extentions.dart';
+import 'package:culturalspacelibrary/features/presentation/views/helper_widget/helper_in_home_page.dart';
+import 'package:culturalspacelibrary/helper_with_dio/cash_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +25,11 @@ class _SettingsBodyState extends State<SettingsBody> {
   bool colo = false;
   dynamic name = "arabic";
   bool b1 = false;
-  bool darkMode = false;
+  bool darkMode = CashHelper.getUserTheme() == "dark" ? true : false;
+
+  //bool darkMode = false;
+  // final GlobalKey<ScaffoldState> scaffoldKeyUsersBody =
+  // GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +37,9 @@ class _SettingsBodyState extends State<SettingsBody> {
       padding: const EdgeInsets.only(top: 2, right: 1, left: 1),
       child: Scaffold(
         key: kayes,
+        drawer: displayEndDrawerInHomePage(scaffoldKey: kayes),
+        endDrawer: displayEndDrawerInHomePage(scaffoldKey: kayes),
+        appBar: myAppBarInAuthorsBody(scaffoldKey1: kayes, title: "Setting "),
         body: Column(
           children: [
             Container(
@@ -81,13 +91,21 @@ class _SettingsBodyState extends State<SettingsBody> {
                 setState(() {
                   darkMode = value;
                   if (darkMode) {
+                    CashHelper.putUserTheme(theme: "dark");
+
                     BlocProvider.of<ThemeBloc>(context)
                         .add(ChangeThemeEvent(ThemeData.dark()));
+                    CashHelper.putUserTheme(theme: "dark");
+                    print(CashHelper.getUserTheme());
                   }
                 });
                 if (!darkMode) {
+                  CashHelper.putUserTheme(theme: "light");
+
                   BlocProvider.of<ThemeBloc>(context)
                       .add(ChangeThemeEvent(ThemeData.light()));
+                  CashHelper.putUserTheme(theme: "light");
+                  print(CashHelper.getUserTheme());
                 }
               },
             ),
